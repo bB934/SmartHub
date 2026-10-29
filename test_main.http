@@ -1,0 +1,29 @@
+# 项目接口自测（PyCharm HTTP Client / VS Code REST Client 均可）
+# 启动：uvicorn app.main:app --reload
+# 接口文档：http://127.0.0.1:8000/api/docs
+
+### 健康检查
+GET http://127.0.0.1:8000/health
+Accept: application/json
+
+### 文档列表
+GET http://127.0.0.1:8000/api/v1/doc
+Accept: application/json
+X-Tenant-Id: 1
+X-Space-Id: 1
+
+### 检索调试
+POST http://127.0.0.1:8000/api/v1/search
+Content-Type: application/json
+X-Tenant-Id: 1
+X-Space-Id: 1
+
+{"query": "报销标准是多少", "topk": 5}
+
+### 流式问答（SSE）
+POST http://127.0.0.1:8000/api/v1/chat/stream
+Content-Type: application/json
+X-Tenant-Id: 1
+X-Space-Id: 1
+
+{"question": "报销标准是多少"}
